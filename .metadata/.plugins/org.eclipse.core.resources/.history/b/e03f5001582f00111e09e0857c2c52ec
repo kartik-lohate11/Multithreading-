@@ -1,0 +1,112 @@
+package com;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+public class Main {
+
+	private static boolean primeNumber(Integer num) {
+		if (num > 0 && num < 3)
+			return true;
+		for (int i = 2; i * i <= num; i++) {
+			if (num % i == 0) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	private static Integer reverseInteger(Integer num) {
+		Integer ans = 0;
+		while (num != 0) {
+			ans = ans * 10 + num % 10;
+			num /= 10;
+		}
+		return ans;
+	}
+
+	private static void moveZero() {
+		List<Integer> list = Arrays.asList(1, 2, 0, 3, 0, 2, 4, 6, 0, 3);
+		Integer idx = 0;
+		for (int i = 0; i < list.size(); i++) {
+			if (list.get(i) != 0) {
+				list.set(idx++, list.get(i));
+			}
+		}
+
+		while (idx < list.size()) {
+			list.set(idx++, 0);
+		}
+
+		System.out.print(list);
+	}
+
+	private static boolean anagram() {
+		String a = "abc";
+		String b = "cbs";
+		Integer tem[] = new Integer[26];
+
+		for (int i = 0; i < a.length(); i++) {
+			int idx = (Math.abs(a.charAt(i) - 'a') * (i + 1)) % 26;
+			if (tem[idx] == null) {
+				tem[idx] = 1;
+			} else {
+				tem[idx]++;
+			}
+		}
+
+		for (int i = 0; i < b.length(); i++) {
+			int idx = (Math.abs(a.charAt(i) - 'a') * (i + 1)) % 26;
+			if (tem[idx] != null) {
+				tem[idx]--;
+			} else {
+				return false;
+			}
+		}
+
+		for (int i = 0; i < tem.length; i++) {
+			if (tem[i] != null && tem[i] != 0) {
+				return false;
+			}
+		}
+
+		return true;
+
+	}
+
+	private static void countString() {
+		String str = "abcccaabbddhhsh";
+		Set<Character> st = new HashSet<>();
+		for (int i = 0; i < str.length(); i++) {
+			st.add(str.charAt(i));
+		}
+
+		Map<Character, Integer> mp = new LinkedHashMap<>();
+
+		for (int i = 0; i < str.length(); i++) {
+			if (!mp.containsKey(str.charAt(i))) {
+				mp.put(str.charAt(i), 1);
+			} else {
+				mp.put(str.charAt(i), mp.get(str.charAt(i)) + 1);
+			}
+		}
+		
+		System.out.print(mp);
+
+	}
+
+	public static void main(String[] agr) {
+
+		System.out.print('c'-'A');
+		
+	}
+
+}

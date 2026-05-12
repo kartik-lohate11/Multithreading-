@@ -1,0 +1,121 @@
+package com;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+public class Main {
+
+	private static boolean primeNumber(Integer num) {
+
+		if (num > 0 && num < 3)
+			return true;
+		for (int i = 2; i * i <= num; i++) {
+			if (num % i == 0) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	private static Integer reverseInteger(Integer num) {
+		Integer ans = 0;
+		while (num != 0) {
+			ans = ans * 10 + num % 10;
+			num /= 10;
+		}
+		return ans;
+	}
+
+	private static void moveZero() {
+		List<Integer> list = Arrays.asList(1, 2, 0, 3, 0, 2, 4, 6, 0, 3);
+		Integer idx = 0;
+		for (int i = 0; i < list.size(); i++) {
+			if (list.get(i) != 0) {
+				list.set(idx++, list.get(i));
+			}
+		}
+
+		while (idx < list.size()) {
+			list.set(idx++, 0);
+		}
+
+		System.out.print(list);
+	}
+
+	private static boolean anagram() {
+		String a = "abc";
+		String b = "abcs";
+		int[] tem = new int[256];
+
+		for (int i = 0; i < a.length(); i++) {
+			tem[a.charAt(i)]++;
+			if (--tem[b.charAt(i)] < 0)
+				return false;
+		}
+
+		return true;
+
+	}
+
+	private static void countString() {
+		String str = "abcccaabbddhhsh";
+		Set<Character> st = new HashSet<>();
+		for (int i = 0; i < str.length(); i++) {
+			st.add(str.charAt(i));
+		}
+
+		Map<Character, Integer> mp = new LinkedHashMap<>();
+
+		for (int i = 0; i < str.length(); i++) {
+			if (!mp.containsKey(str.charAt(i))) {
+				mp.put(str.charAt(i), 1);
+			} else {
+				mp.put(str.charAt(i), mp.get(str.charAt(i)) + 1);
+			}
+		}
+
+		System.out.print(mp);
+
+	}
+
+	private static void reverse(int low, int high, int[] arr) {
+		while (low < high) {
+			arr[low] = arr[low] ^ arr[high] ^ (arr[high] = arr[low]);
+			low++;
+			high--;
+		}
+	}
+
+	public static void reverseInGroups(int[] arr, int k) {
+		// code here
+		int n = arr.length;
+		int low = 0, high = Integer.min(k - 1, arr.length - 1);
+		do {
+			reverse(low, high, arr);
+			low = high + 1;
+			high = Integer.min(high + k - 1, n - 1);
+			System.out.println("Low = " + low + " high = " + high);
+		} while (high < n - 1);
+
+		for (int i = 0; i < arr.length; i++) {
+			System.out.print(arr[i] + " ");
+		}
+	}
+
+	public static void main(String[] agr) {
+
+		int[] arr = { 1, 2 , 3, 4, 5};
+		reverseInGroups(arr, 3);
+//		System.out.print(5%3);
+
+	}
+
+}

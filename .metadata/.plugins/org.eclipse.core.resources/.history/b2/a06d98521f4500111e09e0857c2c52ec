@@ -1,0 +1,5 @@
+package com.multithreading.thread;
+
+public class SecondThread {
+
+}

@@ -1,0 +1,16 @@
+package com.multithreading;
+
+import com.multithreading.thread.FirstThread;
+import com.multithreading.thread.SecondThread;
+
+public class MainThread {
+	
+	public static void main(String arr[]) {
+		FirstThread first = new FirstThread();
+		SecondThread second = new SecondThread();
+		
+		first.run();
+		second.run();
+	}
+
+}

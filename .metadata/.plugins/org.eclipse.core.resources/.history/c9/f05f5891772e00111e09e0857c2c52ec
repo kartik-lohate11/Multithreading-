@@ -1,0 +1,33 @@
+package com;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+public class Main {
+
+	public static void main(String[] agr) {
+
+		String str = "ABCDCsBA";
+		
+		int i=0,j=str.length()-1;
+		boolean y = true;
+		
+		while(i<j) {
+			if(str.charAt(i++) != str.charAt(j--)) {
+				y = false;
+			}
+		}
+		
+		System.out.print(y);
+		
+		
+		
+
+	}
+
+}

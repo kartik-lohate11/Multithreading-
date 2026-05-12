@@ -1,0 +1,15 @@
+package com;
+
+import java.util.Arrays;
+import java.util.List;
+
+public class Main {
+
+	public static void main(String[] agr) {
+		List<String> str = Arrays.asList("a", "b", "c", "d", "e");
+		
+		str.stream().filter(i -> !i.equals("a")).forEach(System.out::printf);
+
+	}
+
+}
